@@ -17,7 +17,6 @@ const PostForm = ({create}) => {
 
     return (
             <form>
-                {/*=============управляемый компонент=========*/}
                 <MyInput
                     type="text"
                     placeholder="Post name"
@@ -29,8 +28,7 @@ const PostForm = ({create}) => {
                     type="text"
                     placeholder="Post description"
                     value={post.body}
-                    onChange={e => setPost({...post, body: e.target.value})} // НОВОЕ ЗНАЧЕНИЕ ИСПОЛЬЗУЕМ ОБЬЕКТ =========
-                    // onChange={e => setBody(e.target.value)} СТАРОЕ ЗНАЧЕНИЕ ПЕРЕДАЧА ОДНОГО ЗНАЧЕНИЯ =========
+                    onChange={e => setPost({...post, body: e.target.value})}
                 />
                 <MyButton onClick={addNewPost}>Create post</MyButton>
             </form>

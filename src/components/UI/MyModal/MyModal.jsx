@@ -9,9 +9,9 @@ const MyModal = ({children, visible, setVisible}) => {
     }
 
     return (
-        //СКЛЕИТЬ КЛАССЫ
+        //JOIN CLASSES
         <div className={rootClasses.join(' ')} onClick={() => setVisible(false)} >
-            {/*=========STOP PROPAGATION отключает срабатывание предыдущего ивента конкретно на элементе======*/}
+            {/*=========STOP PROPAGATION for the special element======*/}
             <div className={cl.myModalContent} onClick={(e) => e.stopPropagation()}>
             {children}
             </div>

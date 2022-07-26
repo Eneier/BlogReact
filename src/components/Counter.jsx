@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-//rsc - create structure
-
 const Counter = () => {
     const [count, setCount] = useState(0)
 
