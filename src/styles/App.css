@@ -62,7 +62,7 @@
 }
 
 .page__current {
-    border: 2px solid orange;
+    border: 2px solid red;
     font-weight: bold;
 }
 
