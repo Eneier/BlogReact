@@ -8,7 +8,7 @@ const PostIdPage = () => {
 
     const params = useParams()
     const [post, setPost] = useState({})
-    const [comments, setComments]= useState([])
+    const [comments, setComments] = useState([])
 
     const [fetchPostById, isLoading, error] = useFetching(async (id) => {
         const response = await PostService.getById(params.id)
@@ -25,35 +25,25 @@ const PostIdPage = () => {
         fetchPostById(params.id)
         fetchComments(params.id)
     }, [])
-    return (
-        <div>
+    return (<div>
             <h1>The page ID is {params.id}</h1>
-            {isLoading
-                ? <Loader/>
-                : <div>
-                    <ul>
-                        <li>{post.title}</li>
-                        <li>{post.body}</li>
-                    </ul>
-                </div>
-            }
+            {isLoading ? <Loader/> : <div>
+                <ul>
+                    <li>{post.title}</li>
+                    <li>{post.body}</li>
+                </ul>
+            </div>}
             <div style={{marginTop: 15}}>
                 <h1>Comments</h1>
-                {isComLoading
-                    ? <Loader/>
-                    : <div>
-                        {comments.map(comm =>
-                            <div style={{marginTop: 15}}>
-                                <h5>{comm.email}</h5>
-                                <h5>{comm.name}</h5>
-                                <div>{comm.body}</div>
-                            </div>
-                    )}
-                </div>
-                }
+                {isComLoading ? <Loader/> : <div>
+                    {comments.map(comm => <div style={{marginTop: 15}}>
+                        <h5>{comm.email}</h5>
+                        <h5>{comm.name}</h5>
+                        <div>{comm.body}</div>
+                    </div>)}
+                </div>}
             </div>
-        </div>
-    );
+        </div>);
 };
 
 export default PostIdPage;
