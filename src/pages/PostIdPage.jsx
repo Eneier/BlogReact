@@ -20,11 +20,11 @@ const PostIdPage = () => {
         setComments(response.data)
     })
 
-
     useEffect(() => {
         fetchPostById(params.id)
         fetchComments(params.id)
     }, [])
+
     return (<div>
             <h1>The page ID is {params.id}</h1>
             {isLoading ? <Loader/> : <div>

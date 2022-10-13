@@ -2,13 +2,24 @@ import './styles/App.css'
 import {BrowserRouter} from "react-router-dom";
 import Navbar from "./components/UI/Navbar/Navbar";
 import AppRouter from "./components/AppRouter";
+import {AuthContext} from "./context";
+import {useState} from "react";
 
 function App() {
+
+    const [isAuth, setIsAuth] = useState(false)
+
     return (
-        <BrowserRouter>
+        <AuthContext.Provider value = {{
+            isAuth,
+            setIsAuth
+        }}>
+            <BrowserRouter>
                 <Navbar/>
                 <AppRouter/>
-        </BrowserRouter>
+            </BrowserRouter>
+        </AuthContext.Provider>
+
     )
 }
 

@@ -1,5 +1,5 @@
-import React from 'react';
-import {Navigate, Route, Routes} from "react-router-dom";
+import React, {useContext} from 'react';
+import {Navigate, Redirect, Route, Routes} from "react-router-dom";
 import About from "../pages/About";
 import Posts from "../pages/Posts";
 import PostIdPage from "../pages/PostIdPage";
@@ -7,19 +7,37 @@ import LoginPage from "../pages/LoginPage";
 import RequireAuth from '../hoc/RequireAuth'
 import {publicRoutes, privateRoutes} from "../router";
 import Login from "../pages/Login";
+import {AuthContext} from "../context";
 
 const AppRouter = () => {
+
+    const {isAuth, setIsAuth} = useContext(AuthContext)
+    console.log(isAuth)
+
     return (
-        <div>
+        isAuth
+        ?
             <Routes>
-                <Route path="/about" element={<About/>}/>
-                <Route path="/posts" element={<Posts/>}/>
-                <Route path="/posts/:id" element={<PostIdPage/>}/>
-                <Route path="*" element={<Posts/>} />
-                <Route path="/posts/:*" element={<Posts/>} />
-                <Route path="/login" element={<Login/>} />
+                {privateRoutes.map(route =>
+                <Route
+                    key={route.path}
+                    path={route.path}
+                    exact={route.exact}
+                    element={route.element}
+                    />
+                )}
             </Routes>
-        </div>
+            :
+            <Routes>
+                {publicRoutes.map(route =>
+                    <Route
+                        key={route.path}
+                        path={route.path}
+                        exact={route.exact}
+                        element={route.element}
+                    />
+                )}
+            </Routes>
     );
 };
 
