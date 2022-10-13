@@ -8,6 +8,11 @@ const Navbar = () => {
 
     const {isAuth, setIsAuth} = useContext(AuthContext)
 
+    const logout = () => {
+        setIsAuth(false)
+        localStorage.removeItem('auth')
+    }
+
     const style1 = ['nav-mobile'].join(' ')
     const style2 = ['left', 'hide-on-med-and-down'].join(' ')
 
@@ -18,7 +23,7 @@ const Navbar = () => {
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/posts">Posts</Link></li>
                 <li><Link to="/login">Login</Link></li>
-                <li><Link to="/login" onClick={() => setIsAuth(false)}>Logout</Link></li>
+                <li><Link to="/login" onClick={logout}>Logout</Link></li>
             </ul>
         </div>
         </nav>
