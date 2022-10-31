@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import {Link} from "react-router-dom";
 import cl from './Navbar.module.css'
-import MyButton from "../button/MyButton";
 import {AuthContext} from "../../../context";
 
 const Navbar = () => {
@@ -18,14 +17,22 @@ const Navbar = () => {
 
     return (
         <nav>
-        <div className={cl.navWrapper}>
-            <ul id={style1} className={style2}>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/posts">Posts</Link></li>
-                <li><Link to="/login">Login</Link></li>
-                <li><Link to="/login" onClick={logout}>Logout</Link></li>
-            </ul>
-        </div>
+            {isAuth
+            ?
+                <div className={cl.navWrapper}>
+                    <ul id={style1} className={style2}>
+                        <li><Link to="/about">About</Link></li>
+                        <li><Link to="/posts">Posts</Link></li>
+                        <li><Link to="/login" onClick={logout}>Logout</Link></li>
+                    </ul>
+                </div>
+                :
+                <div className={cl.navWrapper}>
+                    <ul id={style1} className={style2}>
+                        <li><Link to="/login">Login</Link></li>
+                    </ul>
+                </div>
+            }
         </nav>
     );
 };
